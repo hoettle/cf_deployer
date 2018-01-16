@@ -3,12 +3,18 @@ class StackHelper
       @@all_stacks = get_all_stacks(cloudformation)
       @@tagged_environment_name = environment_name
     end
-  
+
     def self.get_stack_output(tag_type, output_name)
       stack_outputs = get_stack_outputs(tag_type)
       get_stack_output_by_name(stack_outputs, tag_type, output_name).first.output_value
     end
-  
+
+    def self.is_stack_output_empty(tag_type, output_name)
+      stack_outputs = get_stack_outputs(tag_type)
+      stacks_with_output_value = stack_outputs.select { |stack| stack.output_key.include?(output_name) }
+      stacks_with_output_value.empty?
+    end
+
     def self.output_value_exists?(tag_type, output_name)
       get_stack_output(tag_type, output_name)
       return true
