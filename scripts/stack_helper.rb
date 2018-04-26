@@ -67,7 +67,7 @@ class StackHelper
     end
   
     def self.get_stack_parameter_by_name(stack_parameters, tag_type, parameter_name)
-      stacks_with_parameter_value = stack_parameters.select { |stack| stack.parameter_key.include?(parameter_name) }
+      stacks_with_parameter_value = stack_parameters.select { |stack| stack.parameter_key == parameter_name }
       raise "Stack with tags [#{pretty_tag_type(tag_type)}] did not contain parameter [#{parameter_name}]" if stacks_with_parameter_value.empty?
       raise "Stack with tags [#{pretty_tag_type(tag_type)}] contains more than 1 parameters of [#{parameter_name}]" if stacks_with_parameter_value.size > 1
       stacks_with_parameter_value
