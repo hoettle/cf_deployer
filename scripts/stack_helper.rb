@@ -54,7 +54,7 @@ class StackHelper
     end
   
     def self.get_stack_output_by_name(stack_outputs, tags, output_name)
-      stacks_with_output_value = stack_outputs.select { |stack| stack.output_key.include?(output_name) }
+      stacks_with_output_value = stack_outputs.select { |stack| stack.output_key == output_name }
       raise "Stack with tags [#{tags}] did not contain output value [#{output_name}]" if stacks_with_output_value.empty?
       raise "Stack with tags [#{tags}] contains more than 1 outputs of [#{output_name}]" if stacks_with_output_value.size > 1
       stacks_with_output_value
